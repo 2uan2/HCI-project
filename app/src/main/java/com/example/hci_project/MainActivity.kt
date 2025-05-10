@@ -1,47 +1,42 @@
 package com.example.hci_project
 
+import CallApp
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.hci_project.ui.theme.HCI_projectTheme
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+        if (!hasRequiredPermissions()) {
+            ActivityCompat.requestPermissions(
+                this, CAMERAX_PERMISSIONS, 0
+            )
+        }
+        val app = application as VideoCallingApp
         setContent {
-            HCI_projectTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            CallApp(app)
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+    private fun hasRequiredPermissions(): Boolean {
+        return CAMERAX_PERMISSIONS.all {
+            ContextCompat.checkSelfPermission(
+                applicationContext,
+                it
+            ) == PackageManager.PERMISSION_GRANTED
+        }
+    }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    HCI_projectTheme {
-        Greeting("Android")
+    companion object {
+        private val CAMERAX_PERMISSIONS = arrayOf(
+            Manifest.permission.CAMERA,
+//            Manifest.permission.RECORD_AUDIO
+        )
     }
 }
