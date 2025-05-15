@@ -58,8 +58,8 @@ fun RegisterScreen(
     Column(
         Modifier
             .fillMaxWidth()
-            .fillMaxHeight()
-            .background(color = Color("#ffffff".toColorInt())),
+            .fillMaxHeight(),
+//            .background(color = Color("#ffffff".toColorInt())),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
 //        Image(
@@ -90,21 +90,21 @@ fun RegisterScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(66.dp)
-                .padding(horizontal = 64.dp, vertical = 8.dp)
-                .border(1.dp, Color("#7d32a8".toColorInt()), shape = RoundedCornerShape(50)),
+                .padding(horizontal = 64.dp, vertical = 8.dp),
+//                .border(1.dp, Color("#7d32a8".toColorInt()), shape = RoundedCornerShape(50)),
             shape = RoundedCornerShape(50),
             textStyle = TextStyle(
                 textAlign = TextAlign.Center,
-                color = Color("#7d32a8".toColorInt()),
+//                color = Color("#7d32a8".toColorInt()),
                 fontSize = 14.sp
             ),
             colors = TextFieldDefaults.colors(
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent,
-                focusedTextColor = Color("#7d32a8".toColorInt()),
-                unfocusedTextColor = Color("#7d32a8".toColorInt()),
-                cursorColor = Color("#7d32a8".toColorInt())
+//                focusedTextColor = Color("#7d32a8".toColorInt()),
+//                unfocusedTextColor = Color("#7d32a8".toColorInt()),
+//                cursorColor = Color("#7d32a8".toColorInt())
             )
         )
 
@@ -116,12 +116,12 @@ fun RegisterScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(66.dp)
-                .padding(horizontal = 64.dp, vertical = 8.dp)
-                .border(1.dp, Color("#7d32a8".toColorInt()), shape = RoundedCornerShape(50)),
+                .padding(horizontal = 64.dp, vertical = 8.dp),
+//                .border(1.dp, Color("#7d32a8".toColorInt()), shape = RoundedCornerShape(50)),
             shape = RoundedCornerShape(50),
             textStyle = TextStyle(
                 textAlign = TextAlign.Center,
-                color = Color("#7d32a8".toColorInt()),
+//                color = Color("#7d32a8".toColorInt()),
                 fontSize = 14.sp
             ),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
@@ -129,9 +129,9 @@ fun RegisterScreen(
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent,
-                focusedTextColor = Color("#7d32a8".toColorInt()),
-                unfocusedTextColor = Color("#7d32a8".toColorInt()),
-                cursorColor = Color("#7d32a8".toColorInt())
+//                focusedTextColor = Color("#7d32a8".toColorInt()),
+//                unfocusedTextColor = Color("#7d32a8".toColorInt()),
+//                cursorColor = Color("#7d32a8".toColorInt())
             )
         )
 
@@ -143,12 +143,12 @@ fun RegisterScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(66.dp)
-                .padding(horizontal = 64.dp, vertical = 8.dp)
-                .border(1.dp, Color("#7d32a8".toColorInt()), shape = RoundedCornerShape(50)),
+                .padding(horizontal = 64.dp, vertical = 8.dp),
+//                .border(1.dp, Color("#7d32a8".toColorInt()), shape = RoundedCornerShape(50)),
             shape = RoundedCornerShape(50),
             textStyle = TextStyle(
                 textAlign = TextAlign.Center,
-                color = Color("#7d32a8".toColorInt()),
+//                color = Color("#7d32a8".toColorInt()),
                 fontSize = 14.sp
             ),
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
@@ -157,9 +157,9 @@ fun RegisterScreen(
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent,
-                focusedTextColor = Color("#7d32a8".toColorInt()),
-                unfocusedTextColor = Color("#7d32a8".toColorInt()),
-                cursorColor = Color("#7d32a8".toColorInt())
+//                focusedTextColor = Color("#7d32a8".toColorInt()),
+//                unfocusedTextColor = Color("#7d32a8".toColorInt()),
+//                cursorColor = Color("#7d32a8".toColorInt())
             )
         )
 
@@ -173,12 +173,12 @@ fun RegisterScreen(
                 .fillMaxWidth()
                 .height(66.dp)
                 .padding(horizontal = 64.dp, vertical = 8.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color("#7d32a8".toColorInt())),
+//            colors = ButtonDefaults.buttonColors(containerColor = Color("#7d32a8".toColorInt())),
             shape = RoundedCornerShape(50)
         ) {
             Text(
                 text = "Sign Up",
-                color = Color.White,
+//                color = Color.White,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -204,7 +204,7 @@ fun RegisterScreen(
                     onClick = onLoginClicked
                 ),
             fontSize = 14.sp,
-            color = Color("#7d32a8".toColorInt())
+//            color = Color("#7d32a8".toColorInt())
         )
     }
 }

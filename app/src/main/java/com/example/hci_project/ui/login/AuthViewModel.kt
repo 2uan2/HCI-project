@@ -1,5 +1,7 @@
 package com.example.hci_project.ui.login
 
+import android.content.Context
+import android.speech.tts.TextToSpeech
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -11,6 +13,7 @@ import com.example.hci_project.network.AuthPreference
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class AuthViewModel(
     private val repository: AuthRepository,
@@ -122,6 +125,27 @@ class AuthViewModel(
         _userId.value = null
         authPreference.clear()
         reset()
+    }
+
+    private  var  textToSpeech:TextToSpeech? = null
+
+    fun textToSpeech(text: String, context: Context) {
+        textToSpeech = TextToSpeech(
+            context
+        ) {
+            if (it == TextToSpeech.SUCCESS) {
+                textToSpeech?.let { txtToSpeech ->
+                    txtToSpeech.language = Locale.US
+                    txtToSpeech.setSpeechRate(1.0f)
+                    txtToSpeech.speak(
+                        text,
+                        TextToSpeech.QUEUE_FLUSH,
+                        null,
+                        null
+                    )
+                }
+            }
+        }
     }
 
     fun reset() {

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -48,25 +49,22 @@ fun LoginScreen(
             modifier = Modifier
         )
         TextField(
-            value = username, { text -> username = text },
+            value = username,
+            onValueChange = { username = it },
+            label = { Text("Username") },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(66.dp)
-                .padding(start = 64.dp, end = 64.dp, top = 8.dp, bottom = 8.dp)
-                .border(1.dp, Color("#7d32a8".toColorInt()), shape = RoundedCornerShape(50)),
+                .padding(horizontal = 64.dp, vertical = 8.dp),
             shape = RoundedCornerShape(50),
             textStyle = TextStyle(
                 textAlign = TextAlign.Center,
-                color = Color("#7d32a8".toColorInt()),
                 fontSize = 14.sp
             ),
             colors = TextFieldDefaults.colors(
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent,
-                focusedTextColor = Color("#7d32a8".toColorInt()),
-                unfocusedTextColor = Color("#7d32a8".toColorInt()),
-                cursorColor = Color("#7d32a8".toColorInt())
             )
         )
         TextField(
@@ -74,26 +72,27 @@ fun LoginScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(66.dp)
-                .padding(start = 64.dp, end = 64.dp, top = 8.dp, bottom = 8.dp)
-                .border(1.dp, Color("#7d32a8".toColorInt()), shape = RoundedCornerShape(50)),
+                .padding(start = 64.dp, end = 64.dp, top = 8.dp, bottom = 8.dp),
+//                .border(1.dp, Color("#7d32a8".toColorInt()), shape = RoundedCornerShape(50)),
+            label = { Text("Password") },
             shape = RoundedCornerShape(50),
             textStyle = TextStyle(
                 textAlign = TextAlign.Center,
-                color = Color("#7d32a8".toColorInt()),
+//                color = Color("#7d32a8".toColorInt()),
                 fontSize = 14.sp
             ),
             colors = TextFieldDefaults.colors(
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent,
-                focusedTextColor = Color("#7d32a8".toColorInt()),
-                unfocusedTextColor = Color("#7d32a8".toColorInt()),
-                cursorColor = Color("#7d32a8".toColorInt())
+//                focusedTextColor = Color("#7d32a8".toColorInt()),
+//                unfocusedTextColor = Color("#7d32a8".toColorInt()),
+//                cursorColor = Color("#7d32a8".toColorInt())
             ),
         )
         Text(
             text = "Register",
-            color = Color.Blue,
+//            color = Color.Blue,
             modifier = Modifier
                 .clickable(
                     onClick = onRegisterClicked
@@ -122,7 +121,7 @@ fun LoginScreen(
                 .fillMaxWidth()
                 .height(66.dp)
                 .padding(start = 64.dp, end = 64.dp, top = 8.dp, bottom = 8.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color("#7d32a8".toColorInt())),
+//            colors = ButtonDefaults.buttonColors(containerColor = Color("#7d32a8".toColorInt())),
             shape = RoundedCornerShape(50)
         ) {
             Text("Login", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold)

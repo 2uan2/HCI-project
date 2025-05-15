@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.R
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import com.example.hci_project.ui.login.AuthState
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.core.app.NotificationCompat
 import java.util.UUID
 
 @Composable
@@ -39,10 +41,10 @@ fun HomeScreen(
 
                 ) {
                     Text(
-                        text = "No calls",
+                        text = "You will receive a notification when someone needs your help",
                         fontSize = 48.sp,
                         fontWeight = FontWeight.Bold,
-
+                        lineHeight = 64.sp,
                     )
                 }
             }
@@ -85,7 +87,8 @@ fun HomeScreen(
                 ) {
                     Text(
                         text = "Call a volunteer",
-                        fontSize = 60.sp,
+                        fontSize = 64.sp,
+                        lineHeight = 64.sp,
                     )
                 }
             }

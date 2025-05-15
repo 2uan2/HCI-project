@@ -4,10 +4,17 @@ import CallApp
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.hci_project.ui.theme.HCI_projectTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +27,20 @@ class MainActivity : ComponentActivity() {
         }
         val app = application as VideoCallingApp
         setContent {
-            CallApp(app)
+            val systemDarkMode = isSystemInDarkTheme()
+            var isDarkMode by remember { mutableStateOf(systemDarkMode) }
+            HCI_projectTheme(
+                darkTheme = isDarkMode
+            ) {
+                CallApp(
+                    app,
+                    isDarkMode = isDarkMode,
+                    onDarkThemeClicked = {
+                        Log.i("MainActivity", "dark: $isDarkMode")
+                        isDarkMode = !isDarkMode
+                    }
+                )
+            }
         }
     }
 

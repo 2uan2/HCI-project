@@ -3,7 +3,7 @@ package com.example.hci_project.network
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-const val BACKEND_URL = "http://192.168.100.96:8000/"
+const val BACKEND_URL = "http://10.11.41.248:8000/"
 
 object RetrofitInstance {
     private val retrofit by lazy {

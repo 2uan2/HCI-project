@@ -21,12 +21,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Cameraswitch
 import androidx.compose.material.icons.filled.PhotoCamera
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -34,10 +38,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.toRectF
 import com.example.hci_project.domain.Classification
@@ -51,6 +57,8 @@ import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
 @Composable
 fun CameraAIScreen(
     controller: LifecycleCameraController,
+    onObjectReceived: (List<Classification>) -> Unit,
+    onClick: () -> Unit,
 //    objects: List<Classification>,
 //    onPhotoTaken: (Bitmap) -> Unit,
 ) {
@@ -87,29 +95,37 @@ fun CameraAIScreen(
                 controller = controller,
                 modifier = Modifier.fillMaxSize(),
             )
-            IconButton(
+            Button(
                 onClick = {
                     controller.cameraSelector =
                         if (controller.cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) {
                             CameraSelector.DEFAULT_FRONT_CAMERA
                         } else CameraSelector.DEFAULT_BACK_CAMERA
                 },
+                shape = RoundedCornerShape(24),
                 modifier = Modifier
-                    .offset(16.dp, 16.dp)
+//                    .clip(RoundedCornerShape(50))
+                    .offset(16.dp, 16.dp),
             ) {
                 Icon(
                     imageVector = Icons.Default.Cameraswitch,
-                    contentDescription = "switch camera"
+                    contentDescription = "switch camera",
+
+
                 )
             }
             Row(
                 modifier = Modifier.fillMaxWidth()
-                    .align(Alignment.BottomCenter)
-                    .padding(16.dp),
+                    .align(Alignment.BottomCenter),
+//                    .padding(16.dp),
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
-                IconButton(
+                Button(
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = androidx.compose.ui.graphics.Color.Transparent
+                    ),
                     onClick = {
+                        onClick()
                         takePhoto(
                             controller = controller,
                             onPhotoTaken = { bitmap ->
@@ -142,6 +158,7 @@ fun CameraAIScreen(
                                         }
                                         imageBitmap = bitmap.drawBoundingBoxes(objects).asImageBitmap()//.scale(1280, 1280).asImageBitmap()
                                         imageTaken = true
+                                        onObjectReceived(objects.toList())
                                         Log.i("CameraAIScreen", "Objects after filtering: $objects")
                                     }
                                 imageBitmap = bitmap.drawBoundingBoxes(objects).asImageBitmap()//.scale(1280, 1280).asImageBitmap()
@@ -152,13 +169,21 @@ fun CameraAIScreen(
                         )
                     },
                     modifier = Modifier
-                        .background(MaterialTheme.colorScheme.primaryContainer)
-                        .padding(16.dp)
+                        .fillMaxSize()
+                        .clip(RoundedCornerShape(8))
+//                        .padding(32.dp)
+
+//                        .background(MaterialTheme.colorScheme.primaryContainer)
                 ) {
-                    Icon(
-                        imageVector = Icons.Default.PhotoCamera,
-                        contentDescription = "take photo"
+                    Text(
+                        text = "",
+                        fontSize = 24.sp,
+                        modifier = Modifier.padding(8.dp)
                     )
+//                    Icon(
+//                        imageVector = Icons.Default.PhotoCamera,
+//                        contentDescription = "take photo"
+//                    )
                 }
             }
         }

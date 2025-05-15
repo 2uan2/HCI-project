@@ -1,6 +1,8 @@
 package com.example.hci_project
 
 import android.app.Application
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import com.example.hci_project.network.AuthPreference
 import io.getstream.video.android.core.GEO
 import io.getstream.video.android.core.StreamVideo
@@ -27,6 +29,16 @@ class VideoCallingApp : Application() {
     override fun onCreate() {
         authPreference = AuthPreference(applicationContext)
         super.onCreate()
+
+        val notificationChannel = NotificationChannel(
+            "notification_channel_id",
+            "Notification name",
+            NotificationManager.IMPORTANCE_HIGH
+        )
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+
+        // Setting up the channel
+        notificationManager.createNotificationChannel(notificationChannel)
     }
 
     fun initVideoClient(userToken: String, userId: String, isAuthenticated: Boolean, username: String) {
